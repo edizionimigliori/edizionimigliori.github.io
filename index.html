@@ -37,12 +37,12 @@ addEventListener('message', function(e) {
   document.title = title
   if (path) {
     currentPath = path
-    history.replaceState(null, title, '#!' + path)
+    history.replaceState(null, title, '#' + path.slice(1))
   }
 })
 addEventListener('hashchange', navigate)
 function navigate() {
-  var path = location.hash ? location.hash.slice(2) : defaultPath
+  var path = location.hash ? '/' + location.hash.slice(1) : defaultPath
   if (currentPath !== path) {
     iframe.src = domain + path
     currentPath = path
